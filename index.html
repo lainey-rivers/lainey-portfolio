@@ -11,6 +11,31 @@
       content="Portfolio of Lainey Rivers, a front-end creative director with skills in responsive websites, WordPress, and digital experiences."
     >
 
+    <meta 
+        name="author"
+        content="Lainey Rivers"    
+    >
+
+    <meta 
+        name="robots"
+        content="index, follow"
+    >
+
+    <meta 
+        property="og:title"
+        content="Lainey Rivers  |   Front-End Creative Director"
+    >
+
+    <meta 
+        property="og:description"
+        content="Explore Lainey Rivers' development projects, Wordpress work, and digital experiences"
+    >
+
+    <meta 
+        property="og:type"
+        content="website"
+    >
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -221,7 +246,35 @@
             <h2>Featured Projects</h2>
         </div>
 
-        <div class="projects-grid">
+        <div class="project-filters">
+
+    <button 
+        class="filter-btn active" 
+        data-filter="all">
+        All
+    </button>
+
+    <button 
+        class="filter-btn" 
+        data-filter="frontend">
+        Front-End
+    </button>
+
+    <button 
+        class="filter-btn" 
+        data-filter="wordpress">
+        WordPress
+    </button>
+
+    <button 
+        class="filter-btn" 
+        data-filter="javascript">
+        JavaScript
+    </button>
+
+</div>
+
+        <div class="projects-grid" id="projects-grid">
             <!--PROJECT 1-->
             <article class="project-card">
 
@@ -399,19 +452,65 @@
                     Let's build something great.
                 </h2>
 
-                <p>
-                    I'm currently interested in opportunities involving
-                    WordPress Support, Customer support, and digital
-                    experiences.
-                </p>
-
             </div>
 
-            <a 
-                href="mailto:laineyrivers7777@gmail.com"
-                class="btn primary">
-                Contact Me
-            </a>
+            <form id="contact-form" class="contact-form">
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Name
+                    </label>
+
+                    <input 
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                    >
+                </div>
+
+                 <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                required
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="message">
+                Message
+            </label>
+
+            <textarea
+                id="message"
+                name="message"
+                rows="6"
+                required
+            ></textarea>
+        </div>
+
+         <button
+            type="submit"
+            class="btn primary">
+            Send Message
+        </button>
+
+        <p
+            id="form-message"
+            aria-live="polite">
+        </p>
+            </form>
 
     </section>
 
