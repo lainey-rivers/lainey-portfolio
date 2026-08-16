@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SupportDesk | Customer Support Dashboard</title>
+
+    <meta
+        name="description"
+        content="Customer support dashboard built with HTML, CSS, and JavaScript by Lainey Rivers."
+    >
+
+    <link rel="stylesheet" href="support.css">
+
+</head>
+
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            Support<span>Desk</span>
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="#" class="nav-item active">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>✉</span>
+                Tickets
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>♙</span>
+                Customers
+            </a>
+
+            <a href="#" class="nav-item">
+                <span>▥</span>
+                Analytics
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <a href="#" class="nav-item">
+                <span>⚙</span>
+                Settings
+            </a>
+
+            <a href="../../index.html" class="back-link">
+                ← Portfolio
+            </a>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <button
+                id="mobile-menu"
+                class="mobile-menu"
+                aria-label="Open navigation">
+                ☰
+            </button>
+
+
+            <div class="search-container">
+
+                <span>⌕</span>
+
+                <input
+                    type="search"
+                    id="search-input"
+                    placeholder="Search tickets..."
+                    aria-label="Search tickets"
+                >
+
+            </div>
+
+
+            <div class="user-area">
+
+                <button
+                    class="notification-button"
+                    aria-label="Notifications">
+                    ♧
+                </button>
+
+                <div class="avatar">
+                    LR
+                </div>
+
+                <div class="user-info">
+
+                    <strong>Lainey Rivers</strong>
+
+                    <span>Support Admin</span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+
+        <section class="dashboard">
+
+
+            <!-- PAGE HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <p class="eyebrow">
+                        SUPPORT OVERVIEW
+                    </p>
+
+                    <h1>
+                        Good morning, Lainey 👋
+                    </h1>
+
+                    <p>
+                        Here's what's happening with your support team today.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    id="new-ticket-button">
+                    + New Ticket
+                </button>
+
+            </div>
+
+
+            <!-- STATISTICS -->
+
+            <div class="stats-grid">
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        ◎
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Total Tickets
+                        </span>
+
+                        <strong id="total-tickets">
+                            128
+                        </strong>
+
+                        <small class="positive">
+                            ↑ 12% this month
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        !
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Open Tickets
+                        </span>
+
+                        <strong id="open-tickets">
+                            34
+                        </strong>
+
+                        <small>
+                            8 high priority
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        ◷
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Avg. Response
+                        </span>
+
+                        <strong>
+                            18m
+                        </strong>
+
+                        <small class="positive">
+                            ↓ 6% this week
+                        </small>
+
+                    </div>
+
+                </article>
+
+
+                <article class="stat-card">
+
+                    <div class="stat-icon">
+                        ★
+                    </div>
+
+                    <div>
+
+                        <span class="stat-label">
+                            Customer Satisfaction
+                        </span>
+
+                        <strong>
+                            4.8/5
+                        </strong>
+
+                        <small class="positive">
+                            ↑ 0.3 this month
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+
+            <!-- TICKETS SECTION -->
+
+            <section class="tickets-section">
+
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Recent Support Tickets
+                        </h2>
+
+                        <p>
+                            Manage and respond to customer requests.
+                        </p>
+
+                    </div>
+
+
+                    <div class="filters">
+
+                        <select id="status-filter">
+
+                            <option value="all">
+                                All Statuses
+                            </option>
+
+                            <option value="open">
+                                Open
+                            </option>
+
+                            <option value="pending">
+                                Pending
+                            </option>
+
+                            <option value="resolved">
+                                Resolved
+                            </option>
+
+                        </select>
+
+
+                        <select id="priority-filter">
+
+                            <option value="all">
+                                All Priorities
+                            </option>
+
+                            <option value="high">
+                                High
+                            </option>
+
+                            <option value="medium">
+                                Medium
+                            </option>
+
+                            <option value="low">
+                                Low
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- TICKET TABLE -->
+
+                <div class="ticket-table-container">
+
+                    <table class="ticket-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Ticket
+                                </th>
+
+                                <th>
+                                    Customer
+                                </th>
+
+                                <th>
+                                    Category
+                                </th>
+
+                                <th>
+                                    Priority
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+
+                                <th>
+                                    Updated
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="ticket-list">
+
+                            <!-- JavaScript will add tickets here -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+            </section>
+
+        </section>
+
+    </main>
+
+
+    <!-- TICKET MODAL -->
+
+    <div
+        class="modal-overlay"
+        id="ticket-modal"
+        aria-hidden="true">
+
+        <div class="modal">
+
+            <button
+                class="modal-close"
+                id="modal-close"
+                aria-label="Close ticket">
+                ×
+            </button>
+
+            <p class="eyebrow">
+                TICKET DETAILS
+            </p>
+
+            <h2 id="modal-title">
+                Ticket Title
+            </h2>
+
+            <div class="modal-meta">
+
+                <span id="modal-customer">
+                    Customer
+                </span>
+
+                <span id="modal-priority">
+                    Priority
+                </span>
+
+                <span id="modal-status">
+                    Status
+                </span>
+
+            </div>
+
+            <p id="modal-description">
+                Ticket description.
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    class="secondary-button"
+                    id="resolve-ticket">
+                    Mark Resolved
+                </button>
+
+                <button
+                    class="primary-button">
+                    Reply to Customer
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="support.js"></script>
+
+</body>
+
+</html>
