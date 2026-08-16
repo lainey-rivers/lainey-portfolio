@@ -24,6 +24,17 @@
 
 <body>
 
+<div 
+    class="loading-screen"
+    id="loading-screen">
+
+    <div class="loading-spinner"></div>
+
+    <p>
+        Loading SupportDesk ...
+    </p>
+</div>
+
     <!-- SIDEBAR -->
 
     <aside class="sidebar">
@@ -59,6 +70,13 @@
 
 
         <div class="sidebar-bottom">
+
+            <button
+                class="theme-button"
+                 id="theme-toggle"
+                aria-label="Toggle dark mode">
+                 🌙 Dark Mode
+            </button>
 
             <a href="#" class="nav-item">
                 <span>⚙</span>
@@ -299,6 +317,90 @@
                             47
                         </span>
                     </div>
+
+                    <section class="activity-card">
+
+    <div class="section-header">
+
+        <div>
+
+            <p class="eyebrow">
+                RECENT ACTIVITY
+            </p>
+
+            <h2>
+                Support Activity
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="activity-list"
+        id="activity-list">
+
+        <div class="activity-item">
+
+            <div class="activity-dot"></div>
+
+            <div>
+
+                <strong>
+                    Sarah Miller's ticket
+                    was assigned
+                </strong>
+
+                <p>
+                    5 minutes ago
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="activity-item">
+
+            <div class="activity-dot"></div>
+
+            <div>
+
+                <strong>
+                    Payment issue reported
+                </strong>
+
+                <p>
+                    18 minutes ago
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="activity-item">
+
+            <div class="activity-dot"></div>
+
+            <div>
+
+                <strong>
+                    Ticket #1039 resolved
+                </strong>
+
+                <p>
+                    1 hour ago
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
                     <div class="bar-chart">
 
@@ -1206,9 +1308,21 @@
      </div>
 </div>
 
+ <!-- TOAST NOTIFICATION -->
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite">
+
+    <span id="toast-message">
+        Success
+    </span>
+
+</div>
 
     <script src="support.js"></script>
 
 </body>
-
 </html>

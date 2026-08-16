@@ -118,6 +118,32 @@ const tickets = [
 
 ];
 
+/* LOAD SAVED TICKETS */
+
+const savedTickets =
+    localStorage.getItem("supportDeskTickets");
+
+if (savedTickets) {
+
+    tickets.length = 0;
+
+    tickets.push(
+        ...JSON.parse(savedTickets)
+    );
+
+}
+
+/* SAVE TICKETS */
+
+function saveTickets() {
+
+    localStorage.setItem(
+        "supportDeskTickets",
+        JSON.stringify(tickets)
+    );
+
+}
+
 /* DOM ELEMENTS */
 
 const ticketList =
@@ -180,6 +206,32 @@ const mobileMenu =
 const sidebar =
     document.querySelector(".sidebar");
 
+const toast =
+    document.getElementById("toast");
+
+const toastMessage =
+    document.getElementById("toast-message");
+
+let toastTimer;
+
+function showToast(message) {
+
+    toastMessage.textContent =
+        message;
+
+    toast.classList.add("show");
+
+
+    clearTimeout(toastTimer);
+
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 3000);
+
+}
 
 /* CURRENT TICKET */
 
@@ -275,9 +327,29 @@ function displayTickets(ticketData) {
 
             <td>
 
-                <span class="badge status-${ticket.status}">
-                    ${capitalize(ticket.status)}
-                </span>
+                <select
+                   class="status-quick-change"
+                   data-ticket-id="${ticket.id}">
+
+                <option
+                   value="open"
+                   ${ticket.status === "open" ? "selected" : ""}>
+                   Open
+                </option>
+
+                <option
+                    value="pending"
+                    ${ticket.status === "pending" ? "selected" : ""}>
+                     Pending
+                 </option>
+
+                <option
+                    value="resolved"
+                    ${ticket.status === "resolved" ? "selected" : ""}>
+                    Resolved
+                </option>
+
+        </select>
 
             </td>
 
@@ -297,9 +369,62 @@ function displayTickets(ticketData) {
 
         ticketList.appendChild(row);
 
+
+
     });
 
 }
+
+document
+    .querySelectorAll(".status-quick-change")
+    .forEach(select => {
+
+        select.addEventListener(
+            "click",
+            event => {
+
+                event.stopPropagation();
+            }
+        );
+
+        select.addEventListener(
+            "change",
+            event => {
+
+                event.stopPropagation();
+
+                const ticketId =
+                    event.target.dataset.ticketId;
+
+                const ticket =
+                    tickets.find(
+                        ticket =>
+                            ticket.id === ticketId
+                    );
+
+                if (!ticket) {
+                    return;
+                }
+            ticket.status =
+                    event.target.value;
+
+
+                ticket.updated =
+                    "Just now";
+
+
+                saveTickets();
+
+                updateAnalytics();
+
+                showToast(
+                    `${ticket.id} marked ${ticket.status}`
+                );
+
+            }
+        );
+
+    });
 
 /* SEARCH + FILTERS */
 
@@ -553,6 +678,7 @@ saveTicketButton.addEventListener(
         currentTicket.updated =
             "Just now";
 
+        saveTickets();
 
         filterTickets();
 
@@ -560,6 +686,9 @@ saveTicketButton.addEventListener(
 
         closeTicketModal();
 
+        showToast(
+            `${currentTicket.id} updated successfully`
+        );
     }
 );
 
@@ -598,7 +727,12 @@ deleteTicketButton.addEventListener(
                 1
             );
 
-        }
+            saveTickets ();
+
+        showToast(
+            "Ticket deleted successfully"
+        );
+    }
 
 
         filterTickets();
@@ -764,6 +898,8 @@ newTicketForm.addEventListener(
             newTicket
         );
 
+        saveTickets();
+
 
         // Reset form
 
@@ -774,14 +910,15 @@ newTicketForm.addEventListener(
 
         closeNewTicketModal();
 
-
-        // Refresh dashboard
-
         filterTickets();
 
         updateAnalytics();
 
-    }
+        showToast(
+            `${newTicket.id} created successfully`
+        );
+
+     }
 );
 
 /* ANALYTICS */
@@ -956,3 +1093,80 @@ mobileMenu.addEventListener(
 displayTickets(tickets);
 
 updateAnalytics();
+
+const themeToggle =
+    document.getElementById (
+        "theme-toggle"
+    );
+
+const savedTheme =
+    localStorage.getItem (
+        "supportDeskTheme"
+    );
+
+    if (savedTheme === "dark") {
+
+        document.body.classList.add(
+            "dark-mode"
+        );
+    }
+
+themeToggle.addEventListener(
+    "click",
+    () => {
+
+        document.body.classList.toggle(
+            "dark-mode"
+        );
+
+
+        const isDark =
+            document.body.classList.contains(
+                "dark-mode"
+            );
+
+
+        localStorage.setItem(
+            "supportDeskTheme",
+            isDark
+                ? "dark"
+                : "light"
+        );
+
+
+        themeToggle.textContent =
+            isDark
+                ? "☀️ Light Mode"
+                : "🌙 Dark Mode";
+
+    }
+);
+
+/* LOADING SCREEN */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        const loadingScreen =
+            document.getElementById(
+                "loading-screen"
+            );
+
+
+        setTimeout(() => {
+
+            loadingScreen.style.opacity =
+                "0";
+
+
+            setTimeout(() => {
+
+                loadingScreen.remove();
+
+            }, 300);
+
+        }, 400);
+
+    }
+);
