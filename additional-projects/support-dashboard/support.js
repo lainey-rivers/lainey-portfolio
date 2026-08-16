@@ -1,3 +1,6 @@
+/* CUSTOMER SUPPORT DASHBOARD */
+/* TICKET DATA */
+
 const tickets = [
 
     {
@@ -86,17 +89,54 @@ const tickets = [
 
 ];
 
-const ticketList = document.getElementById("ticket-list");
+/* DOM ELEMENTS */
 
+const ticketList =
+    document.getElementById("ticket-list");
+
+const searchInput =
+    document.getElementById("search-input");
+
+const statusFilter =
+    document.getElementById("status-filter");
+
+const priorityFilter =
+    document.getElementById("priority-filter");
+
+const modal =
+    document.getElementById("ticket-modal");
+
+const modalClose =
+    document.getElementById("modal-close");
+
+const resolveButton =
+    document.getElementById("resolve-ticket");
+
+const mobileMenu =
+    document.getElementById("mobile-menu");
+
+const sidebar =
+    document.querySelector(".sidebar");
+
+/* CURRENT TICKET */
+
+let currentTicket = null;
+
+/* HELPER FUNCTION */
 
 function capitalize(text) {
-    return text.charAt(0).toUpperCase() + text.slice(1);
+
+    return text.charAt(0).toUpperCase()
+        + text.slice(1);
+
 }
 
+/* DISPLAY TICKETS */
 
 function displayTickets(ticketData) {
 
     ticketList.innerHTML = "";
+
 
     if (ticketData.length === 0) {
 
@@ -114,13 +154,17 @@ function displayTickets(ticketData) {
 
     ticketData.forEach(ticket => {
 
-        const row = document.createElement("tr");
+        const row =
+            document.createElement("tr");
+
 
         row.className = "ticket-row";
+
 
         row.innerHTML = `
 
             <td>
+
                 <div class="ticket-id">
                     ${ticket.id}
                 </div>
@@ -128,41 +172,59 @@ function displayTickets(ticketData) {
                 <div class="ticket-title">
                     ${ticket.title}
                 </div>
+
             </td>
 
+
             <td>
+
                 <span class="customer-name">
                     ${ticket.customer}
                 </span>
+
             </td>
 
+
             <td>
+
                 <span class="category">
                     ${ticket.category}
                 </span>
+
             </td>
 
+
             <td>
+
                 <span class="priority-${ticket.priority}">
                     ${capitalize(ticket.priority)}
                 </span>
+
             </td>
 
+
             <td>
+
                 <span class="badge status-${ticket.status}">
                     ${capitalize(ticket.status)}
                 </span>
+
             </td>
+
 
             <td>
                 ${ticket.updated}
             </td>
+
         `;
 
 
-        // THIS makes the ticket clickable
+        /* Make ticket clickable */
+
         row.addEventListener("click", () => {
+
             openTicket(ticket);
+
         });
 
 
@@ -172,84 +234,338 @@ function displayTickets(ticketData) {
 
 }
 
+/* SEARCH + FILTERS */
 
-displayTickets(tickets);
 
-const modal = document.getElementById("ticket-modal");
+function filterTickets() {
 
-const modalClose = document.getElementById("modal-close");
+    const searchTerm =
+        searchInput.value
+            .toLowerCase()
+            .trim();
 
-let currentTicket = null;
 
-const resolveButton =
-    document.getElementById("resolve-ticket");
+    const selectedStatus =
+        statusFilter.value;
 
+
+    const selectedPriority =
+        priorityFilter.value;
+
+
+    const filteredTickets =
+        tickets.filter(ticket => {
+
+
+            /* SEARCH */
+
+            const matchesSearch =
+
+                ticket.id
+                    .toLowerCase()
+                    .includes(searchTerm)
+
+                ||
+
+                ticket.title
+                    .toLowerCase()
+                    .includes(searchTerm)
+
+                ||
+
+                ticket.customer
+                    .toLowerCase()
+                    .includes(searchTerm)
+
+                ||
+
+                ticket.category
+                    .toLowerCase()
+                    .includes(searchTerm);
+
+
+            /* STATUS */
+
+            const matchesStatus =
+
+                selectedStatus === "all"
+
+                ||
+
+                ticket.status === selectedStatus;
+
+
+            /* PRIORITY */
+
+            const matchesPriority =
+
+                selectedPriority === "all"
+
+                ||
+
+                ticket.priority === selectedPriority;
+
+
+            return (
+
+                matchesSearch
+                &&
+                matchesStatus
+                &&
+                matchesPriority
+
+            );
+
+        });
+
+
+    displayTickets(filteredTickets);
+
+}
+
+/* SEARCH EVENT */
+
+searchInput.addEventListener(
+    "input",
+    filterTickets
+);
+
+/* STATUS FILTER EVENT */
+
+statusFilter.addEventListener(
+    "change",
+    filterTickets
+);
+
+/* PRIORITY FILTER EVENT */
+
+priorityFilter.addEventListener(
+    "change",
+    filterTickets
+);
+
+/* MODAL */
 
 function openTicket(ticket) {
 
     currentTicket = ticket;
 
-    document.getElementById("modal-title").textContent =
-        ticket.title;
 
-    document.getElementById("modal-customer").textContent =
+    document.getElementById(
+        "modal-title"
+    ).textContent = ticket.title;
+
+
+    document.getElementById(
+        "modal-customer"
+    ).textContent =
         `Customer: ${ticket.customer}`;
 
-    document.getElementById("modal-priority").textContent =
+
+    document.getElementById(
+        "modal-priority"
+    ).textContent =
         `Priority: ${capitalize(ticket.priority)}`;
 
-    document.getElementById("modal-status").textContent =
+
+    document.getElementById(
+        "modal-status"
+    ).textContent =
         `Status: ${capitalize(ticket.status)}`;
 
-    document.getElementById("modal-description").textContent =
+
+    document.getElementById(
+        "modal-description"
+    ).textContent =
         ticket.description;
 
 
     modal.classList.add("active");
 
-    modal.setAttribute("aria-hidden", "false");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
 }
 
+/* CLOSE MODAL */
 
 function closeModal() {
 
     modal.classList.remove("active");
 
-    modal.setAttribute("aria-hidden", "true");
+
+    modal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
 }
 
 
-modalClose.addEventListener("click", closeModal);
+modalClose.addEventListener(
+    "click",
+    closeModal
+);
 
 
-modal.addEventListener("click", (event) => {
+/* Close modal when clicking outside it */
 
-    if (event.target === modal) {
+modal.addEventListener(
+    "click",
+    event => {
+
+        if (event.target === modal) {
+
+            closeModal();
+
+        }
+
+    }
+);
+
+/* MARK TICKET RESOLVED */
+
+resolveButton.addEventListener(
+    "click",
+    () => {
+
+        if (!currentTicket) {
+
+            return;
+
+        }
+
+
+        currentTicket.status =
+            "resolved";
+
+
+        currentTicket.updated =
+            "Just now";
+
+
+        /* Refresh tickets */
+
+        filterTickets();
+
+
+        /* Refresh analytics */
+
+        updateAnalytics();
+
+
+        /* Close modal */
+
         closeModal();
+
+    }
+);
+
+/* ANALYTICS */
+
+function updateAnalytics() {
+
+
+    /* Total tickets */
+
+    const total =
+        tickets.length;
+
+
+    /* Resolved tickets */
+
+    const resolved =
+        tickets.filter(ticket =>
+            ticket.status === "resolved"
+        ).length;
+
+
+    /*  High priority tickets */
+
+    const highPriority =
+        tickets.filter(ticket =>
+            ticket.priority === "high"
+        ).length;
+
+
+    /* Resolution rate */
+
+    const resolutionRate =
+        total === 0
+
+            ? 0
+
+            : Math.round(
+                (resolved / total) * 100
+            );
+
+
+    /* Update weekly ticket count */
+
+    const weeklyTicketCount =
+        document.getElementById(
+            "weekly-ticket-count"
+        );
+
+
+    if (weeklyTicketCount) {
+
+        weeklyTicketCount.textContent =
+            total;
+
     }
 
-});
 
-resolveButton.addEventListener("click", () => {
+    /* Update resolution rate */
 
-    if (!currentTicket) {
-        return;
+    const resolutionRateElement =
+        document.getElementById(
+            "resolution-rate"
+        );
+
+
+    if (resolutionRateElement) {
+
+        resolutionRateElement.textContent =
+            `${resolutionRate}%`;
+
     }
 
-    currentTicket.status = "resolved";
+    /* Update High Priority Count */
 
-    displayTickets(tickets);
+    const highPriorityElement =
+        document.getElementById(
+            "high-priority-count"
+        );
 
-    closeModal();
 
-});
+    if (highPriorityElement) {
 
-const mobileMenu =
-    document.getElementById("mobile-menu");
+        highPriorityElement.textContent =
+            highPriority;
 
-const sidebar =
-    document.querySelector(".sidebar");
+    }
 
-mobileMenu.addEventListener("click", () => {
-    sidebar.classList.toggle("open");
-});
+}
+
+/* MOBILE MENU */
+
+mobileMenu.addEventListener(
+    "click",
+    () => {
+
+        sidebar.classList.toggle(
+            "open"
+        );
+
+    }
+);
+
+/* INITIALIZE DASHBOARD */
+
+displayTickets(tickets);
+
+updateAnalytics();
