@@ -762,7 +762,6 @@
         class="modal-overlay"
         id="ticket-modal"
         aria-hidden="true">
-
         <div class="modal">
 
             <button
@@ -780,38 +779,207 @@
                 Ticket Title
             </h2>
 
-            <div class="modal-meta">
+            <div class="ticket-edit-grid">
 
-                <span id="modal-customer">
-                    Customer
-                </span>
+                <!--CUSTOMER-->
 
-                <span id="modal-priority">
-                    Priority
-                </span>
+                <div class="form-group">
 
-                <span id="modal-status">
-                    Status
-                </span>
+                    <label>
+                        Customer
+                    </label>
+
+                    <input
+                        input="text"
+                        id="edit-customer"
+                    >
+                </div>
+
+                <!--EMAIL-->
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                    type="email"
+                    id="edit-email"
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                <label>
+                    Category
+                </label>
+
+                <select id="edit-category">
+
+                    <option value="Account">
+                        Account
+                    </option>
+
+                    <option value="Billing">
+                        Billing
+                    </option>
+
+                    <option value="Technical">
+                        Technical
+                    </option>
+
+                    <option value="Product">
+                        Product
+                    </option>
+
+                </select>
 
             </div>
 
-            <p id="modal-description">
-                Ticket description.
-            </p>
+
+            <!-- PRIORITY -->
+
+            <div class="form-group">
+
+                <label>
+                    Priority
+                </label>
+
+                <select id="edit-priority">
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option value="medium">
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                </select>
+
+            </div>
 
 
-            <div class="modal-actions">
+            <!-- STATUS -->
+
+            <div class="form-group">
+
+                <label>
+                    Status
+                </label>
+
+                <select id="edit-status">
+
+                    <option value="open">
+                        Open
+                    </option>
+
+                    <option value="pending">
+                        Pending
+                    </option>
+
+                    <option value="resolved">
+                        Resolved
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- ASSIGNED AGENT -->
+
+            <div class="form-group">
+
+                <label>
+                    Assigned Agent
+                </label>
+
+                <select id="edit-agent">
+
+                    <option value="Lainey Rivers">
+                        Lainey Rivers
+                    </option>
+
+                    <option value="Jordan Lee">
+                        Jordan Lee
+                    </option>
+
+                    <option value="Taylor Morgan">
+                        Taylor Morgan
+                    </option>
+
+                    <option value="Alex Carter">
+                        Alex Carter
+                    </option>
+
+                </select>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="form-group">
+
+            <label>
+                Customer Issue
+            </label>
+
+            <textarea
+                id="edit-description"
+                rows="4">
+            </textarea>
+
+        </div>
+
+
+        <!-- INTERNAL NOTES -->
+
+        <div class="form-group">
+
+            <label>
+                Internal Support Notes
+            </label>
+
+            <textarea
+                id="edit-notes"
+                rows="4"
+                placeholder="Add notes for the support team...">
+            </textarea>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button
+                class="danger-button"
+                id="delete-ticket">
+                Delete Ticket
+            </button>
+
+            <div class="modal-actions-right">
 
                 <button
                     class="secondary-button"
-                    id="resolve-ticket">
-                    Mark Resolved
+                    id="cancel-edit">
+                    Cancel
                 </button>
 
                 <button
-                    class="primary-button">
-                    Reply to Customer
+                    class="primary-button"
+                    id="save-ticket">
+                    Save Changes
                 </button>
 
             </div>
@@ -819,6 +987,224 @@
         </div>
 
     </div>
+
+</div>
+
+
+<!-- NEW TICKET MODAL -->
+
+<div
+    class="modal-overlay"
+    id="new-ticket-modal"
+    aria-hidden="true">
+
+    <div class="modal">
+
+        <button
+            class="modal-close"
+            id="new-ticket-close"
+            aria-label="Close new ticket form">
+            ×
+        </button>
+
+
+        <p class="eyebrow">
+            CREATE TICKET
+        </p>
+
+        <h2>
+            Create a New Support Ticket
+        </h2>
+
+
+        <form id="new-ticket-form">
+
+
+            <!-- CUSTOMER -->
+
+            <div class="form-group">
+
+                <label for="new-customer">
+                    Customer Name
+                </label>
+
+                <input
+                    type="text"
+                    id="new-customer"
+                    placeholder="e.g. Jamie Smith"
+                    required
+                >
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="new-email">
+                    Customer Email
+                </label>
+
+                <input
+                    type="email"
+                    id="new-email"
+                    placeholder="customer@example.com"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TITLE -->
+
+            <div class="form-group">
+
+                <label for="new-title">
+                    Issue
+                </label>
+
+                <input
+                    type="text"
+                    id="new-title"
+                    placeholder="Briefly describe the issue"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CATEGORY -->
+
+            <div class="form-group">
+
+                <label for="new-category">
+                    Category
+                </label>
+
+                <select
+                    id="new-category"
+                    required>
+
+                    <option value="Account">
+                        Account
+                    </option>
+
+                    <option value="Billing">
+                        Billing
+                    </option>
+
+                    <option value="Technical">
+                        Technical
+                    </option>
+
+                    <option value="Product">
+                        Product
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PRIORITY -->
+
+            <div class="form-group">
+
+                <label for="new-priority">
+                    Priority
+                </label>
+
+                <select
+                    id="new-priority"
+                    required>
+
+                    <option value="low">
+                        Low
+                    </option>
+
+                    <option value="medium">
+                        Medium
+                    </option>
+
+                    <option value="high">
+                        High
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="new-description">
+                    Description
+                </label>
+
+                <textarea
+                    id="new-description"
+                    rows="5"
+                    placeholder="Describe the customer's issue..."
+                    required>
+                </textarea>
+
+            </div>
+
+
+            <!-- ASSIGNMENT -->
+
+            <div class="form-group">
+
+                <label for="new-agent">
+                    Assign To
+                </label>
+
+                <select id="new-agent">
+
+                    <option value="Lainey Rivers">
+                        Lainey Rivers
+                    </option>
+
+                    <option value="Jordan Lee">
+                        Jordan Lee
+                    </option>
+
+                    <option value="Taylor Morgan">
+                        Taylor Morgan
+                    </option>
+
+                    <option value="Alex Carter">
+                        Alex Carter
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    id="new-ticket-cancel">
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-button">
+                    Create Ticket
+                </button>
+            </div>
+
+        </form>
+
+     </div>
+</div>
 
 
     <script src="support.js"></script>

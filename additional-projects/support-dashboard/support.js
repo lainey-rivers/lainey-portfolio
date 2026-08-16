@@ -1,90 +1,119 @@
 /* CUSTOMER SUPPORT DASHBOARD */
 /* TICKET DATA */
 
+
 const tickets = [
 
     {
         id: "#1042",
         title: "Unable to log into account",
         customer: "Sarah Miller",
+        email: "sarah.miller@example.com",
         category: "Account",
         priority: "high",
         status: "open",
+        agent: "Lainey Rivers",
         updated: "5 min ago",
         description:
-            "Customer reports that they are unable to log into their account after resetting their password."
+            "Customer reports that they are unable to log into their account after resetting their password.",
+        notes:
+            "Customer has already attempted a password reset."
     },
 
     {
         id: "#1041",
         title: "Question about billing",
         customer: "Michael Chen",
+        email: "michael.chen@example.com",
         category: "Billing",
         priority: "medium",
         status: "pending",
+        agent: "Jordan Lee",
         updated: "18 min ago",
         description:
-            "Customer is requesting clarification about a charge that appeared on their most recent invoice."
+            "Customer is requesting clarification about a charge that appeared on their most recent invoice.",
+        notes:
+            "Reviewing invoice history before responding."
     },
 
     {
         id: "#1040",
         title: "Unable to connect device",
         customer: "Jessica Brown",
+        email: "jessica.brown@example.com",
         category: "Technical",
         priority: "high",
         status: "open",
+        agent: "Lainey Rivers",
         updated: "32 min ago",
         description:
-            "Customer is unable to connect their device to the application."
+            "Customer is unable to connect their device to the application.",
+        notes:
+            "Customer provided device model and operating system."
     },
 
     {
         id: "#1039",
         title: "How do I change my email?",
         customer: "David Wilson",
+        email: "david.wilson@example.com",
         category: "Account",
         priority: "low",
         status: "resolved",
+        agent: "Taylor Morgan",
         updated: "1 hour ago",
         description:
-            "Customer requested instructions for changing the email address associated with their account."
+            "Customer requested instructions for changing the email address associated with their account.",
+        notes:
+            "Provided account settings instructions."
     },
 
     {
         id: "#1038",
         title: "Payment method declined",
         customer: "Emily Johnson",
+        email: "emily.johnson@example.com",
         category: "Billing",
         priority: "high",
         status: "open",
+        agent: "Alex Carter",
         updated: "2 hours ago",
         description:
-            "Customer's payment method was declined while attempting to renew their subscription."
+            "Customer's payment method was declined while attempting to renew their subscription.",
+        notes:
+            "Customer may need to update their billing information."
     },
 
     {
         id: "#1037",
         title: "Feature request",
         customer: "Alex Thompson",
+        email: "alex.thompson@example.com",
         category: "Product",
         priority: "low",
         status: "pending",
+        agent: "Jordan Lee",
         updated: "3 hours ago",
         description:
-            "Customer submitted a request for an additional reporting feature."
+            "Customer submitted a request for an additional reporting feature.",
+        notes:
+            "Feature request forwarded to product team."
     },
 
     {
         id: "#1036",
         title: "Application loading slowly",
         customer: "Rachel Davis",
+        email: "rachel.davis@example.com",
         category: "Technical",
         priority: "medium",
         status: "open",
+        agent: "Lainey Rivers",
         updated: "4 hours ago",
         description:
-            "Customer reports that pages are taking significantly longer than normal to load."
+            "Customer reports that pages are taking significantly longer than normal to load.",
+        notes:
+            "Investigating possible performance issue."
     }
 
 ];
@@ -103,14 +132,47 @@ const statusFilter =
 const priorityFilter =
     document.getElementById("priority-filter");
 
-const modal =
+
+/* Existing ticket modal */
+
+const ticketModal =
     document.getElementById("ticket-modal");
 
 const modalClose =
     document.getElementById("modal-close");
 
-const resolveButton =
-    document.getElementById("resolve-ticket");
+
+/* New ticket modal */
+
+const newTicketModal =
+    document.getElementById("new-ticket-modal");
+
+const newTicketButton =
+    document.getElementById("new-ticket-button");
+
+const newTicketClose =
+    document.getElementById("new-ticket-close");
+
+const newTicketCancel =
+    document.getElementById("new-ticket-cancel");
+
+const newTicketForm =
+    document.getElementById("new-ticket-form");
+
+
+/* Ticket editing */
+
+const saveTicketButton =
+    document.getElementById("save-ticket");
+
+const deleteTicketButton =
+    document.getElementById("delete-ticket");
+
+const cancelEditButton =
+    document.getElementById("cancel-edit");
+
+
+/*  Mobile menu */
 
 const mobileMenu =
     document.getElementById("mobile-menu");
@@ -118,11 +180,12 @@ const mobileMenu =
 const sidebar =
     document.querySelector(".sidebar");
 
+
 /* CURRENT TICKET */
 
 let currentTicket = null;
 
-/* HELPER FUNCTION */
+/* HELPER */
 
 function capitalize(text) {
 
@@ -141,11 +204,17 @@ function displayTickets(ticketData) {
     if (ticketData.length === 0) {
 
         ticketList.innerHTML = `
+
             <tr>
+
                 <td colspan="6">
+
                     No tickets found.
+
                 </td>
+
             </tr>
+
         `;
 
         return;
@@ -158,7 +227,8 @@ function displayTickets(ticketData) {
             document.createElement("tr");
 
 
-        row.className = "ticket-row";
+        row.className =
+            "ticket-row";
 
 
         row.innerHTML = `
@@ -219,13 +289,10 @@ function displayTickets(ticketData) {
         `;
 
 
-        /* Make ticket clickable */
-
-        row.addEventListener("click", () => {
-
-            openTicket(ticket);
-
-        });
+        row.addEventListener(
+            "click",
+            () => openTicket(ticket)
+        );
 
 
         ticketList.appendChild(row);
@@ -257,52 +324,30 @@ function filterTickets() {
         tickets.filter(ticket => {
 
 
-            /* SEARCH */
+            const searchableText = `
+
+                ${ticket.id}
+                ${ticket.title}
+                ${ticket.customer}
+                ${ticket.email}
+                ${ticket.category}
+
+            `.toLowerCase();
+
 
             const matchesSearch =
-
-                ticket.id
-                    .toLowerCase()
-                    .includes(searchTerm)
-
-                ||
-
-                ticket.title
-                    .toLowerCase()
-                    .includes(searchTerm)
-
-                ||
-
-                ticket.customer
-                    .toLowerCase()
-                    .includes(searchTerm)
-
-                ||
-
-                ticket.category
-                    .toLowerCase()
+                searchableText
                     .includes(searchTerm);
 
 
-            /* STATUS */
-
             const matchesStatus =
-
                 selectedStatus === "all"
-
                 ||
-
                 ticket.status === selectedStatus;
 
-
-            /* PRIORITY */
-
             const matchesPriority =
-
                 selectedPriority === "all"
-
                 ||
-
                 ticket.priority === selectedPriority;
 
 
@@ -323,28 +368,26 @@ function filterTickets() {
 
 }
 
-/* SEARCH EVENT */
 
 searchInput.addEventListener(
     "input",
     filterTickets
 );
 
-/* STATUS FILTER EVENT */
 
 statusFilter.addEventListener(
     "change",
     filterTickets
 );
 
-/* PRIORITY FILTER EVENT */
 
 priorityFilter.addEventListener(
     "change",
     filterTickets
 );
 
-/* MODAL */
+/* OPEN EXISTING TICKET */
+
 
 function openTicket(ticket) {
 
@@ -353,51 +396,250 @@ function openTicket(ticket) {
 
     document.getElementById(
         "modal-title"
-    ).textContent = ticket.title;
+    ).textContent =
+        `${ticket.id} — ${ticket.title}`;
 
 
     document.getElementById(
-        "modal-customer"
-    ).textContent =
-        `Customer: ${ticket.customer}`;
+        "edit-customer"
+    ).value =
+        ticket.customer;
 
 
     document.getElementById(
-        "modal-priority"
-    ).textContent =
-        `Priority: ${capitalize(ticket.priority)}`;
+        "edit-email"
+    ).value =
+        ticket.email;
 
 
     document.getElementById(
-        "modal-status"
-    ).textContent =
-        `Status: ${capitalize(ticket.status)}`;
+        "edit-category"
+    ).value =
+        ticket.category;
 
 
     document.getElementById(
-        "modal-description"
-    ).textContent =
+        "edit-priority"
+    ).value =
+        ticket.priority;
+
+
+    document.getElementById(
+        "edit-status"
+    ).value =
+        ticket.status;
+
+
+    document.getElementById(
+        "edit-agent"
+    ).value =
+        ticket.agent;
+
+
+    document.getElementById(
+        "edit-description"
+    ).value =
         ticket.description;
 
 
-    modal.classList.add("active");
+    document.getElementById(
+        "edit-notes"
+    ).value =
+        ticket.notes;
 
 
-    modal.setAttribute(
+    ticketModal.classList.add(
+        "active"
+    );
+
+
+    ticketModal.setAttribute(
         "aria-hidden",
         "false"
     );
 
 }
 
-/* CLOSE MODAL */
+/* CLOSE EXISTING TICKET */
 
-function closeModal() {
+function closeTicketModal() {
 
-    modal.classList.remove("active");
+    ticketModal.classList.remove(
+        "active"
+    );
 
 
-    modal.setAttribute(
+    ticketModal.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+
+
+    currentTicket = null;
+
+}
+
+
+modalClose.addEventListener(
+    "click",
+    closeTicketModal
+);
+
+
+cancelEditButton.addEventListener(
+    "click",
+    closeTicketModal
+);
+
+/* SAVE TICKET CHANGES */
+
+saveTicketButton.addEventListener(
+    "click",
+    () => {
+
+        if (!currentTicket) {
+            return;
+        }
+
+
+        currentTicket.customer =
+            document.getElementById(
+                "edit-customer"
+            ).value.trim();
+
+
+        currentTicket.email =
+            document.getElementById(
+                "edit-email"
+            ).value.trim();
+
+
+        currentTicket.category =
+            document.getElementById(
+                "edit-category"
+            ).value;
+
+
+        currentTicket.priority =
+            document.getElementById(
+                "edit-priority"
+            ).value;
+
+
+        currentTicket.status =
+            document.getElementById(
+                "edit-status"
+            ).value;
+
+
+        currentTicket.agent =
+            document.getElementById(
+                "edit-agent"
+            ).value;
+
+
+        currentTicket.description =
+            document.getElementById(
+                "edit-description"
+            ).value.trim();
+
+
+        currentTicket.notes =
+            document.getElementById(
+                "edit-notes"
+            ).value.trim();
+
+
+        currentTicket.updated =
+            "Just now";
+
+
+        filterTickets();
+
+        updateAnalytics();
+
+        closeTicketModal();
+
+    }
+);
+
+/* DELETE TICKET */
+
+deleteTicketButton.addEventListener(
+    "click",
+    () => {
+
+        if (!currentTicket) {
+            return;
+        }
+
+
+        const confirmed =
+            confirm(
+                `Delete ${currentTicket.id}?`
+            );
+
+
+        if (!confirmed) {
+            return;
+        }
+
+
+        const index =
+            tickets.indexOf(
+                currentTicket
+            );
+
+
+        if (index !== -1) {
+
+            tickets.splice(
+                index,
+                1
+            );
+
+        }
+
+
+        filterTickets();
+
+        updateAnalytics();
+
+        closeTicketModal();
+
+    }
+);
+
+/* NEW TICKET MODAL */
+
+function openNewTicketModal() {
+
+    newTicketModal.classList.add(
+        "active"
+    );
+
+
+    newTicketModal.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+
+
+    document.getElementById(
+        "new-customer"
+    ).focus();
+
+}
+
+
+function closeNewTicketModal() {
+
+    newTicketModal.classList.remove(
+        "active"
+    );
+
+
+    newTicketModal.setAttribute(
         "aria-hidden",
         "true"
     );
@@ -405,61 +647,139 @@ function closeModal() {
 }
 
 
-modalClose.addEventListener(
+newTicketButton.addEventListener(
     "click",
-    closeModal
+    openNewTicketModal
 );
 
 
-/* Close modal when clicking outside it */
-
-modal.addEventListener(
+newTicketClose.addEventListener(
     "click",
+    closeNewTicketModal
+);
+
+
+newTicketCancel.addEventListener(
+    "click",
+    closeNewTicketModal
+);
+
+/* CREATE NEW TICKET */
+
+newTicketForm.addEventListener(
+    "submit",
     event => {
 
-        if (event.target === modal) {
-
-            closeModal();
-
-        }
-
-    }
-);
-
-/* MARK TICKET RESOLVED */
-
-resolveButton.addEventListener(
-    "click",
-    () => {
-
-        if (!currentTicket) {
-
-            return;
-
-        }
+        event.preventDefault();
 
 
-        currentTicket.status =
-            "resolved";
+        const customer =
+            document.getElementById(
+                "new-customer"
+            ).value.trim();
 
 
-        currentTicket.updated =
-            "Just now";
+        const email =
+            document.getElementById(
+                "new-email"
+            ).value.trim();
 
 
-        /* Refresh tickets */
+        const title =
+            document.getElementById(
+                "new-title"
+            ).value.trim();
+
+
+        const category =
+            document.getElementById(
+                "new-category"
+            ).value;
+
+
+        const priority =
+            document.getElementById(
+                "new-priority"
+            ).value;
+
+
+        const description =
+            document.getElementById(
+                "new-description"
+            ).value.trim();
+
+
+        const agent =
+            document.getElementById(
+                "new-agent"
+            ).value;
+
+
+        // Generate next ticket number
+
+        const numbers =
+            tickets.map(ticket => {
+
+                return parseInt(
+                    ticket.id.replace("#", "")
+                );
+
+            });
+
+
+        const nextNumber =
+            Math.max(...numbers, 1042) + 1;
+
+
+        const newTicket = {
+
+            id: `#${nextNumber}`,
+
+            title: title,
+
+            customer: customer,
+
+            email: email,
+
+            category: category,
+
+            priority: priority,
+
+            status: "open",
+
+            agent: agent,
+
+            updated: "Just now",
+
+            description: description,
+
+            notes: ""
+
+        };
+
+
+        // Add ticket
+
+        tickets.unshift(
+            newTicket
+        );
+
+
+        // Reset form
+
+        newTicketForm.reset();
+
+
+        // Close form
+
+        closeNewTicketModal();
+
+
+        // Refresh dashboard
 
         filterTickets();
 
-
-        /* Refresh analytics */
-
         updateAnalytics();
-
-
-        /* Close modal */
-
-        closeModal();
 
     }
 );
@@ -468,14 +788,9 @@ resolveButton.addEventListener(
 
 function updateAnalytics() {
 
-
-    /* Total tickets */
-
     const total =
         tickets.length;
 
-
-    /* Resolved tickets */
 
     const resolved =
         tickets.filter(ticket =>
@@ -483,15 +798,11 @@ function updateAnalytics() {
         ).length;
 
 
-    /*  High priority tickets */
-
     const highPriority =
         tickets.filter(ticket =>
             ticket.priority === "high"
         ).length;
 
-
-    /* Resolution rate */
 
     const resolutionRate =
         total === 0
@@ -503,53 +814,129 @@ function updateAnalytics() {
             );
 
 
-    /* Update weekly ticket count */
-
-    const weeklyTicketCount =
+    const weeklyCount =
         document.getElementById(
             "weekly-ticket-count"
         );
 
 
-    if (weeklyTicketCount) {
+    if (weeklyCount) {
 
-        weeklyTicketCount.textContent =
+        weeklyCount.textContent =
             total;
 
     }
 
 
-    /* Update resolution rate */
-
-    const resolutionRateElement =
+    const resolutionElement =
         document.getElementById(
             "resolution-rate"
         );
 
 
-    if (resolutionRateElement) {
+    if (resolutionElement) {
 
-        resolutionRateElement.textContent =
+        resolutionElement.textContent =
             `${resolutionRate}%`;
 
     }
 
-    /* Update High Priority Count */
 
-    const highPriorityElement =
+    const priorityElement =
         document.getElementById(
             "high-priority-count"
         );
 
 
-    if (highPriorityElement) {
+    if (priorityElement) {
 
-        highPriorityElement.textContent =
+        priorityElement.textContent =
             highPriority;
 
     }
 
+
+    const totalTickets =
+        document.getElementById(
+            "total-tickets"
+        );
+
+
+    if (totalTickets) {
+
+        totalTickets.textContent =
+            total;
+
+    }
+
+
+    const openTickets =
+        document.getElementById(
+            "open-tickets"
+        );
+
+
+    if (openTickets) {
+
+        openTickets.textContent =
+            tickets.filter(ticket =>
+                ticket.status === "open"
+            ).length;
+
+    }
+
 }
+
+/* CLOSE MODALS BY CLICKING OUTSIDE */
+
+ticketModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === ticketModal
+        ) {
+
+            closeTicketModal();
+
+        }
+
+    }
+);
+
+
+newTicketModal.addEventListener(
+    "click",
+    event => {
+
+        if (
+            event.target === newTicketModal
+        ) {
+
+            closeNewTicketModal();
+
+        }
+
+    }
+);
+
+/* ESCAPE KEY */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key !== "Escape") {
+            return;
+        }
+
+
+        closeTicketModal();
+
+        closeNewTicketModal();
+
+    }
+);
 
 /* MOBILE MENU */
 
@@ -564,7 +951,7 @@ mobileMenu.addEventListener(
     }
 );
 
-/* INITIALIZE DASHBOARD */
+/* INITIALIZE */
 
 displayTickets(tickets);
 
