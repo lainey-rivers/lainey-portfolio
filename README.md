@@ -1,4 +1,4 @@
-# Lainey Rivers | Front-End Developer Portfolio
+# Lainey Rivers | Front-End Creative Director Portfolio
 
 Welcome to my personal portfolio!
 
