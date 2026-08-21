@@ -1,528 +1,176 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lainey Rivers — front-end developer and creative technologist portfolio.">
+  <meta name="author" content="Lainey Rivers">
+  <meta property="og:title" content="Lainey Rivers | Front-End Developer">
+  <meta property="og:description" content="Front-end development, support tooling, WordPress, UI/UX and digital design projects.">
+  <title>Lainey Rivers | Front-End Creative Director</title>
 
-    <title>Lainey Rivers | Front-End Creative Director</title>
-
-    <meta 
-      name="description"
-      content="Portfolio of Lainey Rivers, a front-end creative director with skills in responsive websites, WordPress, and digital experiences."
-    >
-
-    <meta 
-        name="author"
-        content="Lainey Rivers"    
-    >
-
-    <meta 
-        name="robots"
-        content="index, follow"
-    >
-
-    <meta 
-        property="og:title"
-        content="Lainey Rivers  |   Front-End Creative Director"
-    >
-
-    <meta 
-        property="og:description"
-        content="Explore Lainey Rivers' development projects, Wordpress work, and digital experiences"
-    >
-
-    <meta 
-        property="og:type"
-        content="website"
-    >
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Luckiest+Guy&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Sour+Gummy:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="ambient ambient-one"></div>
+  <div class="ambient ambient-two"></div>
 
-    <header>
-    <nav class="navbar">
+  <header class="site-header" id="top">
+    <nav class="navbar container" aria-label="Primary navigation">
+      <a class="logo" href="#home" aria-label="Lainey Rivers home">Lainey<span>.</span></a>
 
-        <a href="#home" class="logo">
-            Lainey<span>.</span>
-        </a>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="nav-links" aria-label="Open navigation">
+        <span></span><span></span><span></span>
+      </button>
 
-        <button class="menu-toggle" id="menu-toggle" aria-label="Open navigation">
-            ☰
-        </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
 
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-
-        <button id="theme-toggle" aria-label="Toggle dark mode">
-            🌙
-        </button>
-
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Toggle color theme">
+        <span id="theme-icon">☾</span>
+      </button>
     </nav>
-</header>
+  </header>
 
-<main>
+  <main>
+    <section class="hero container" id="home">
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="status-pill"><span></span> Available for remote opportunities</div>
+          <p class="eyebrow">FRONT-END CREATIVE DIRECTOR · CUSTOMER SERVICE </p>
+          <h1>Welcome to my <span> little corner of </span> the digital world! <span> Explore my work & creativity.</span></h1>
+          <p class="hero-lead">I mix creativity, code, and a little personality to turn complicated ideas into bright, intuitive, and genuinely enjoyable digital experiences.</p>
 
-    <!--HERO-->
-    <section id="home" class="hero">
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">Explore my work <span>↗</span></a>
+            <a class="btn btn-ghost" href="Images/Lainey-Resume.pdf" download>Download resume <span>↓</span></a>
+          </div>
 
-        <div class="hero-content">
-
-            <p class="eyebrow">
-                FRONT-END CREATIVE DIRECTOR
-            </p>
-
-            <h1>
-                Hi, I'm <span>Lainey Rivers!</span>
-            </h1>
-
-            <h2>
-                I build responsive, user-friendly websites and custom digital assets designed to connect with audiences and solve real-world problems.
-            </h2>
-            <p>
-                I'm a front-end creative director focused on designing and executing responsive websites, intuitive user interfaces, and custom digital solutions. I combine technical proficiency in HTML, CSS, and WordPress with a strong background in graphic design and customer service to deliver engaging, user-centered digital experiences.
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#projects" class="btn primary">
-                    View My Work
-                </a>
-
-                <a href="Lainey-Rivers-Resume.pdf"
-                   class="btn secondary"
-                   download>
-                    Download Resume
-                </a>
-            </div>
-
-            <div class="social-links">
-
-                <a 
-                   href="https://www.linkedin.com/in/lainey-rivers-17610b392/"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                   LinkedIn
-                </a>
-
-                <a
-                   href="https://github.com/lainey-rivers"
-                   target="_blank"
-                   rel="noopener noreferrer">
-                   GitHub
-                </a>
-            </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/lainey-rivers-17610b392/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+            <a href="https://github.com/lainey-rivers" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          </div>
         </div>
+
+        <div class="hero-panel reveal delay-1" aria-label="Developer preview">
+          <div class="terminal-bar"><span></span><span></span><span></span><b>lainey.dev</b></div>
+          <div class="terminal-body">
+            <p><i>const</i> developer = {</p>
+            <p class="indent"><strong>name:</strong> <em>"Lainey Rivers"</em>,</p>
+            <p class="indent"><strong>focus:</strong> <em>"Front-End + UX"</em>,</p>
+            <p class="indent"><strong>tools:</strong> [<em>"HTML"</em>, <em>"CSS"</em>, <em>"JS"</em>],</p>
+            <p class="indent"><strong>mindset:</strong> <em>"Build. Test. Improve."</em></p>
+            <p>};</p>
+            <div class="terminal-line"><span class="prompt">$</span> npm run build<span class="cursor"></span></div>
+            <div class="build-output"><span>✓</span> interface optimized<br><span>✓</span> responsive layout checked<br><span>✓</span> user experience ready</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-stats reveal delay-2">
+        <div><strong>HTML / CSS / JS</strong><span>Core front-end</span></div>
+        <div><strong>WordPress</strong><span>Web + content</span></div>
+        <div><strong>UI / UX</strong><span>Design thinking</span></div>
+        <div><strong>Customer Support</strong><span>Problem solving</span></div>
+      </div>
     </section>
 
-    <!--ABOUT-->
-    <section id="about" class="section">
-
-        <div class="section-heading">
-            <p class="eyebrow-about">ABOUT ME</p>
-            <h2>Building with creativity and technology.</h2>
+    <section class="section container" id="about">
+      <div class="section-label">01 — ABOUT</div>
+      <div class="about-grid">
+        <div class="section-title reveal">
+          <p class="kicker">A developer with a creative brain.</p>
+          <h2>I turn code & creativity <span>into experiences people actually enjoy using.</span></h2>
         </div>
-
-        <div class="about-content">
-
-            <div class="about-image">
-                <img 
-                    src="images/profile.jpg"
-                    alt="Professional Portrait of Lainey Rivers"
-                >
-            </div>
-
-            <div class="about-text">
-
-                <p>
-                    I leverage expertise in WordPress development, digital design, and marketing strategy alongside strong customer service background to support and grow digital brand presence.
-                </p>
-
-                <p>
-                    I'm currently expanding my front-end development skills through hands-on projects and computer science coursework, with the long-term goal of becoming a full-stack engineer.
-                </p>
-
-                <p>
-                    I enjoy taking complex problems and turning them into simple, intuitive experiences.
-                </p>
-            </div>
+        <div class="about-copy reveal delay-1">
+          <p>I combine front-end development, digital design, WordPress, marketing, and customer service to build experiences that are visually strong and genuinely useful.</p>
+          <p>I'm continuing to grow my development skills through hands-on projects and computer science coursework, with a long-term goal of becoming a full-stack engineer.</p>
+          <div class="about-highlights">
+            <div><span>01</span><strong>Build</strong><small>Responsive interfaces</small></div>
+            <div><span>02</span><strong>Solve</strong><small>Real customer problems</small></div>
+            <div><span>03</span><strong>Improve</strong><small>Through testing + feedback</small></div>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!--SKILLS-->
-    <section id="skills" class="section">
+    <section class="section container" id="skills">
+      <div class="section-label">02 — TOOLKIT</div>
+      <div class="section-title centered reveal">
+        <p class="kicker">Tools I use to turn ideas into interfaces.</p>
+        <h2>My <span>technical toolkit.</span></h2>
+      </div>
 
-        <div class="section-heading">
-            <p class="eyebrow-skills">MY SKILLS</p>
-            <h2>Technologies I work with.</h2>
-        </div>
-
-        <div class="skill-card">
-            <h3>HTML</h3>
-            <p>Semantic, accessible website structure.</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>CSS</h3>
-            <p>Responsive layouts and modern UI design.</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>JavaScript</h3>
-            <p>Interactive and dynamic web experiences.</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>WordPress</h3>
-            <p>Custom websites, content management, and optimization.</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Git and GitHub</h3>
-            <p>Version control and collaborative development.</p>
-        </div>
-        
-        <div class="skill-card">
-            <h3>UI/UX & Digital Design</h3>
-            <p>Intuitive user interfaces, visual branding, and custom digital assets</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>SQL</h3>
-            <p>Database querying, data manipulation, and relational database management</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Basic Python</h3>
-            <p>Scripting, basic automation, and core programming fundamentals.</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Jira</h3>
-            <p>Agile task tracking, issue management, and workflow organization</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Confluence</h3>
-            <p>Team documentation, knowledge bases, and collaborative specs</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Notion</h3>
-            <p>Workspace organization, documentation, and project tracking</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Microsoft Office & Teams</h3>
-            <p>Enterprise communication, document creation, and team collaboration</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>Google Workspace</h3>
-            <p>Cloud collaboration, document management, and productivity tools</p>
-        </div>
-
-        <div class="skill-card">
-            <h3>CRM Databases</h3>
-            <p>Worked with Yardi, CRMIQ, and Hubspot for Customer relationship management, lead tracking, data organization, and pipeline maintenance</p>
-        </div>
+      <div class="skills-grid">
+        <article class="skill-card reveal"><div class="skill-icon">&lt;/&gt;</div><h3>HTML</h3><p>Semantic, accessible structure and clean page architecture.</p><span>FRONT-END</span></article>
+        <article class="skill-card reveal delay-1"><div class="skill-icon">#</div><h3>CSS</h3><p>Responsive layouts, animations, visual systems, and polished UI.</p><span>FRONT-END</span></article>
+        <article class="skill-card reveal delay-2"><div class="skill-icon">JS</div><h3>JavaScript</h3><p>DOM manipulation, interactive components, APIs, and local storage.</p><span>FRONT-END</span></article>
+        <article class="skill-card reveal"><div class="skill-icon">W</div><h3>WordPress</h3><p>Business websites, content management, Elementor, and optimization.</p><span>CMS</span></article>
+        <article class="skill-card reveal delay-1"><div class="skill-icon">◈</div><h3>UI / UX</h3><p>User-focused layouts, visual hierarchy, branding, and digital assets.</p><span>DESIGN</span></article>
+        <article class="skill-card reveal delay-2"><div class="skill-icon">⌘</div><h3>Git + GitHub</h3><p>Version control, project organization, commits, and deployment workflows.</p><span>WORKFLOW</span></article>
+        <article class="skill-card reveal"><div class="skill-icon">DB</div><h3>SQL</h3><p>Database querying, data manipulation, and relational database fundamentals.</p><span>DATA</span></article>
+        <article class="skill-card reveal delay-1"><div class="skill-icon">PY</div><h3> Basic Python</h3><p>Programming fundamentals, scripting, and basic automation.</p><span>PROGRAMMING</span></article>
+        <article class="skill-card reveal delay-2"><div class="skill-icon">▦</div><h3>Jira / Notion / Confluence</h3><p>Task tracking, documentation, knowledge bases, and project organization.</p><span>PRODUCTIVITY</span></article>
+        <article class="skill-card reveal"><div class="skill-icon">CRM</div><h3>CRM Platforms</h3><p>Experience with Yardi, CRM tools, HubSpot-style workflows, and lead tracking.</p><span>CUSTOMER OPS</span></article>
+        <article class="skill-card reveal delay-1"><div class="skill-icon">MS</div><h3>Microsoft 365</h3><p>Documents, spreadsheets, Teams collaboration, and business workflows.</p><span>PRODUCTIVITY</span></article>
+        <article class="skill-card reveal delay-2"><div class="skill-icon">G</div><h3>Google Workspace</h3><p>Cloud collaboration, documentation, communication, and organization.</p><span>PRODUCTIVITY</span></article>
+      </div>
     </section>
 
-    <!--PROJECTS-->
-    <section id="projects" class="section">
+    <section class="section projects-section container" id="projects">
+      <div class="section-label">03 — SELECTED WORK</div>
+      <div class="projects-heading reveal">
+        <div class="section-title"><p class="kicker">Projects built to demonstrate real-world skills.</p><h2>Featured <span>work.</span></h2></div>
+        <p class="projects-intro">A mix of front-end applications, support tooling, WordPress work, and API-driven interfaces.</p>
+      </div>
 
-        <div class="section-heading">
+      <div class="project-filters" role="group" aria-label="Filter projects">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="frontend">Front-End</button>
+        <button class="filter-btn" data-filter="javascript">JavaScript</button>
+        <button class="filter-btn" data-filter="wordpress">WordPress</button>
+      </div>
 
-            <p class="eyebrow-work">MY WORK</p>
-            <h2>Featured Projects</h2>
-        </div>
-
-        <div class="project-filters">
-
-    <button 
-        class="filter-btn active" 
-        data-filter="all">
-        All
-    </button>
-
-    <button 
-        class="filter-btn" 
-        data-filter="frontend">
-        Front-End
-    </button>
-
-    <button 
-        class="filter-btn" 
-        data-filter="wordpress">
-        WordPress
-    </button>
-
-    <button 
-        class="filter-btn" 
-        data-filter="javascript">
-        JavaScript
-    </button>
-
-</div>
-
-        <div class="projects-grid" id="projects-grid">
-            <!--PROJECT 1-->
-            <article class="project-card">
-
-                <img 
-                    src="Images/project-support.png"
-                    alt="Customer Support Dashboard Project"
-                    class="project-image"
-                    >
-        <div class="project-content"> 
-
-                <p class="project-number">
-                    PROJECT 01
-                </p>
-
-                    <h3>Customer Support Dashboard</h3>
-
-                    <p>
-                        An interactive support dashboard designed
-                            to help customer service teams monitor tickets,
-                            response times, and customer satisfaction.
-                    </p>
-
-                     <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                        </div>
-
-                        <div class="project-links">
-
-                            <a href="#" class="project-btn">
-                                Live Demo
-                            </a>
-
-                            <a href="#" class="project-btn outline">
-                                GitHub
-                            </a>
-                        </div>
-                </div>
-            </article>
-
-            <!--PROJECT 2-->
-
-            <article class="project-card">
-
-                <img
-                    src="Images/project-wordpress.png"
-                    alt="WordPress Business Website Project"
-                    class="project-image"
-                >
-
-                <div class="project-content">
-                    <p class="project-number">
-                        PROJECT 02
-                    </p>
-
-
-                        <h3>WordPress Business Website</h3>
-
-                        <p>
-                            A responsive business website focused on
-                            user experience, SEO, lead generation,
-                            and modern web design.
-                        </p>
-
-                        <div class="project-tags">
-                            <span>WordPress</span>
-                            <span>Elementor</span>
-                            <span>CSS</span>
-                        </div>
-
-                        <div class="project-links">
-
-                            <a href="#" class="project-btn">
-                                Live Demo 
-                            </a>
-
-                            <a href="#" class="project-btn outline">
-                                Case Study
-                            </a>
-                        </div>
-                    </div>
-            </article>
-
-            <!--PROJECT 3-->
-
-            <article class="project-card">
-
-                <img 
-                    src="Images/project-game.png"
-                    alt="Video Game Search Application"
-                    class="project-image"
-                >
-
-                <div class="project-content">
-                    <p class="project-number">
-                        PROJECT 03
-                    </p>
-
-                        <h3>Game Search Application</h3>
-
-                        <p>
-                            A JavaScript application that uses an API
-                            to search and display video game information.
-                        </p>
-
-                        <div class="project-tags">
-                            <span>JavaScript</span>
-                            <span>API</span>
-                            <span>JSON</span>
-                        </div>
-
-                        <div class="project-links">
-
-                            <a href="#" class="project-btn">
-                                Live Demo 
-                            </a>
-
-                            <a href="#" class="project-btn outline">
-                                GitHub
-                            </a>
-                        </div>
-
-                    </div>
-            </article>
-        </div>
+      <div class="projects-grid" id="projects-grid"></div>
     </section>
 
-    <!--EXPERIENCE-->
-    <section id="experience" class="section">
+    <section class="section container" id="experience">
+      <div class="section-label">04 — EXPERIENCE</div>
+      <div class="section-title reveal"><p class="kicker">Where technical thinking meets customer experience.</p><h2>Professional <span>journey.</span></h2></div>
 
-        <div class="section-heading">
-            <p class="eyebrow-experience">EXPERIENCE</p>
-            <h2>My Professional Journey</h2>
-        </div>
-
-        <div class="timeline">
-
-            <div class="timeline-item">
-
-                <span class="timeline-date">
-                    Current
-                </span>
-
-                <h3>Front-End Creative Director / Customer Relations</h3>
-
-                <p>
-                    utilize WordPress, HTML, CSS, Jira, and CRM tools to build and manage client websites, troubleshoot technical issues, translate business needs into technical requirements, and oversee remote client relationships.
-                </p>
-
-            </div>
-
-            <div class="timeline-item">
-
-                <span class="timeline-date">
-                    Previous
-                </span>
-
-                <h3>Leasing Agent</h3>
-
-                <p>
-                    utilized Yardi CRM to manage customer records, addressed high-volume inquiries, resolved complaints using de-escalation and active listening, verified sensitive background and financial data, and coordinated across departments to facilitate the move-in and move-out process.
-                </p>
-            </div>
-        </div>
+      <div class="timeline">
+        <article class="timeline-item reveal"><div class="timeline-marker"></div><div class="timeline-meta">CURRENT · DIGITAL / CLIENT WORK</div><h3>Front-End Creative Director / Customer Relations</h3><p>Build and manage client-facing websites and digital assets, troubleshoot technical issues, translate business needs into practical solutions, and support ongoing client relationships.</p><div class="timeline-tags"><span>WordPress</span><span>HTML</span><span>CSS</span><span>Jira</span><span>CRM</span></div></article>
+        <article class="timeline-item reveal delay-1"><div class="timeline-marker"></div><div class="timeline-meta">PREVIOUS · CUSTOMER OPERATIONS</div><h3>Leasing Agent</h3><p>Managed customer records and high-volume inquiries, resolved complaints through active listening and de-escalation, worked with CRM systems, and coordinated across departments to move customers through complex processes.</p><div class="timeline-tags"><span>Customer Service</span><span>CRM</span><span>Problem Solving</span></div></article>
+      </div>
     </section>
 
-    <!--CONTACT-->
-    <section id="contact" class="section contact">
-        <div class="section-heading">
-
-                <p class="eyebrow-contact">GET IN TOUCH</p>
-
-                <h2>
-                    Let's build something great.
-                </h2>
-
-            </div>
-
-            <form id="contact-form" class="contact-form">
-
-                <div class="form-group">
-
-                    <label for="name">
-                        Name
-                    </label>
-
-                    <input 
-                        type="text"
-                        id="name"
-                        name="name"
-                        required
-                    >
-                </div>
-
-                 <div class="form-group">
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                required
-            >
-
+    <section class="section container contact-section" id="contact">
+      <div class="contact-card reveal">
+        <div class="section-label">05 — CONTACT</div>
+        <div class="contact-grid">
+          <div><p class="kicker">Have a role, project, or idea?</p><h2>Let's build something <span>great.</span></h2><p class="contact-copy">I'm interested in remote front-end, technical support, customer success, WordPress, and product-focused opportunities.</p><div class="contact-links"><a href="https://www.linkedin.com/in/lainey-rivers-17610b392/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="https://github.com/lainey-rivers" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div></div>
+          <form id="contact-form" class="contact-form">
+            <label for="name">Name<input id="name" name="name" type="text" required></label>
+            <label for="email">Email<input id="email" name="email" type="email" required></label>
+            <label for="message">Message<textarea id="message" name="message" rows="5" required></textarea></label>
+            <button class="btn btn-primary" type="submit">Prepare email <span>↗</span></button>
+            <p id="form-message" class="form-message" aria-live="polite"></p>
+          </form>
         </div>
-
-
-        <div class="form-group">
-
-            <label for="message">
-                Message
-            </label>
-
-            <textarea
-                id="message"
-                name="message"
-                rows="6"
-                required
-            ></textarea>
-        </div>
-
-         <button
-            type="submit"
-            class="btn primary">
-            Send Message
-        </button>
-
-        <p
-            id="form-message"
-            aria-live="polite">
-        </p>
-            </form>
-
+      </div>
     </section>
+  </main>
 
-</main>
+  <footer class="footer container"><span>© 2026 Lainey Rivers</span><span>Built with HTML · CSS · JavaScript</span><a href="#top">Back to top ↑</a></footer>
 
-<footer>
-
-    <p>
-         © 2026 Lainey Rivers. Built with HTML, CSS & JavaScript.
-    </p>
-</footer>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

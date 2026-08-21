@@ -1,44 +1,153 @@
-# Lainey Rivers - Portfolio
+# Lainey Rivers | Front-End Developer Portfolio
 
-Personal Portfolio website showcasing my experience in front-end development, WordPress, Digital marketing, and Customer support.
+Welcome to my personal portfolio!
 
-## Built With
+I'm **Lainey Rivers**, a front-end creative director and digital artist focused on building responsive, user-friendly digital experiences that combine **technology, design, and real-world problem solving**.
+
+This portfolio showcases my front-end development projects, WordPress work, customer-support tooling, and API-driven applications.
+
+## About This Portfolio
+
+I created this portfolio to showcase my growing experience in front-end development while highlighting the combination of technical, creative, and customer-focused skills I bring to digital projects.
+
+My approach is simple:
+
+> **Build. Test. Improve.**
+
+I enjoy taking complicated ideas and turning them into interfaces that feel intuitive, useful, and visually engaging.
+
+## Featured Projects
+
+### SupportDesk
+
+A responsive customer-support dashboard concept designed around real-world support workflows.
+
+**Features include:**
+
+- Ticket management
+- Customer conversations
+- Priority and status tracking
+- Agent activity
+- Customer information
+- Support analytics
+- Interactive dashboard components
+
+**Built with:**
+
+- HTML
+- CSS
+- JavaScript
+- LocalStorage
+
+---
+
+### WordPress Business Website
+
+A responsive business website focused on creating a polished digital presence while supporting usability, lead generation, and clear communication.
+
+**Focus areas:**
+
+- Responsive web design
+- User experience
+- SEO fundamentals
+- Lead generation
+- Content presentation
+- Modern visual design
+
+**Built with:**
+
+- WordPress
+- Elementor
+- CSS
+
+---
+
+### Game Search Application
+
+An API-powered JavaScript application that allows users to search for video games and dynamically display relevant game information.
+
+**Demonstrates:**
+
+- API integration
+- JavaScript functionality
+- JSON data handling
+- Dynamic DOM manipulation
+- Search functionality
+- Responsive interface design
+
+**Built with:**
+
+- JavaScript
+- REST API
+- JSON
+- HTML
+- CSS
+
+## Skills & Technologies
+
+### Front-End Development
 
 - HTML5
 - CSS3
 - JavaScript
+- Responsive Web Design
+- DOM Manipulation
+- API Integration
+
+### Web & CMS
+
+- WordPress
+- Elementor
+- WooCommerce fundamentals
+- Website Management
+
+### Development & Workflow
+
 - Git
 - GitHub
+- Jira
+- Confluence
+- Notion
 
-## Features
+### Data & Programming
 
-- Responsive Design
-- Dark Mode
-- Mobile Navigation
-- Project Filtering
-- Interactive Project Cards
-- Contact Form Validation
-- SEO Metadata
-- Accessibility-focused HTML
+- SQL
+- Python fundamentals
+- JSON
+- REST APIs
 
-## Projects
+### Creative & Digital
 
-### Customer Support Dashboard
+- UI/UX Design
+- Graphic Design
+- Digital Design
+- Branding
+- Marketing
+- Visual Content Creation
 
-Interactive dashboard designed to demonstrate front-end development and customer-support workflow design.
+### Customer & Product Support
 
-### WordPress Business Website
+- Technical Troubleshooting
+- Customer Support
+- Product Support
+- CRM Platforms
+- Ticket Management
+- Client Communication
+- Problem Solving
+- Documentation
 
-Responsive business website demonstrating WordPress development, SEO, and digital marketing.
+## Portfolio Features
 
-### Game Search Application
+The portfolio includes:
 
-JavaScript application using a REST API to search and display video game information.
-
-## What I Learned
-
-This project allowed me to strengthen my understanding of responsive web design, JavaScript, DOM manipulation, form validation, accessibility, Git, and GitHub.
-
-## Author
-
-Lainey Rivers
+- Responsive design across desktop, tablet, and mobile
+- Dark/light theme switching
+- Interactive project filtering
+- Project technology tags
+- Scroll and hover animations
+- Responsive navigation
+- Project demonstrations and GitHub links
+- Contact form
+- Resume download
+- Accessible semantic HTML
+- Modern UI/UX design

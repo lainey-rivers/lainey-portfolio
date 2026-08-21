@@ -17,7 +17,26 @@ const tickets = [
         description:
             "Customer reports that they are unable to log into their account after resetting their password.",
         notes:
-            "Customer has already attempted a password reset."
+            "Customer has already attempted a password reset.",
+        messages: [
+
+        {
+            sender: "customer",
+            name: "Sarah Miller",
+            text:
+                "Hi, I reset my password but I still can't log into my account. Can you help me?",
+            time: "2:42 PM"
+        },
+
+        {
+            sender: "agent",
+            name: "Lainey Rivers",
+            text:
+                "Hi Sarah! Absolutely. I'm going to check your account and help you get logged back in.",
+            time: "2:47 PM"
+        }
+
+    ]
     },
 
     {
@@ -33,7 +52,26 @@ const tickets = [
         description:
             "Customer is requesting clarification about a charge that appeared on their most recent invoice.",
         notes:
-            "Reviewing invoice history before responding."
+            "Reviewing invoice history before responding.",
+        messages: [
+
+    {
+        sender: "customer",
+        name: "Michael Chen",
+        text:
+            "I don't understand the charge on my latest invoice.",
+        time: "1:15 PM"
+    },
+
+    {
+        sender: "agent",
+        name: "Jordan Lee",
+        text:
+            "I'll review the invoice and get back to you shortly.",
+        time: "1:22 PM"
+    }
+
+]
     },
 
     {
@@ -65,7 +103,26 @@ const tickets = [
         description:
             "Customer requested instructions for changing the email address associated with their account.",
         notes:
-            "Provided account settings instructions."
+            "Provided account settings instructions.",
+        messages: [
+
+    {
+        sender: "customer",
+        name: "David Wilson",
+        text:
+            "How do I change my email address?",
+        time: "11:45 AM"
+    },
+
+    {
+        sender: "agent",
+        name: "Taylor Morgan",
+        text:
+            "You will need to go to your profile and click edit personal details.",
+        time: "12:20 PM"
+    }
+
+]
     },
 
     {
@@ -81,7 +138,26 @@ const tickets = [
         description:
             "Customer's payment method was declined while attempting to renew their subscription.",
         notes:
-            "Customer may need to update their billing information."
+            "Customer may need to update their billing information.",
+        messages: [
+
+    {
+        sender: "customer",
+        name: "Emily Johnson",
+        text:
+            "My payment method was declined.",
+        time: "9:57 PM"
+    },
+
+    {
+        sender: "agent",
+        name: "Alex Carter",
+        text:
+            "I'll review your payment method and get back to you shortly.",
+        time: "8:22 AM"
+    }
+
+]
     },
 
     {
@@ -97,7 +173,26 @@ const tickets = [
         description:
             "Customer submitted a request for an additional reporting feature.",
         notes:
-            "Feature request forwarded to product team."
+            "Feature request forwarded to product team.",
+        messages: [
+
+    {
+        sender: "customer",
+        name: "Alex Thompson",
+        text:
+            "Can you add an additional reporting feature?",
+        time: "3:35 PM"
+    },
+
+    {
+        sender: "agent",
+        name: "Jordan Lee",
+        text:
+            "I'll contact  my team and get back to you shortly.",
+        time: "4:01 PM"
+    }
+
+]
     },
 
     {
@@ -113,10 +208,31 @@ const tickets = [
         description:
             "Customer reports that pages are taking significantly longer than normal to load.",
         notes:
-            "Investigating possible performance issue."
+            "Investigating possible performance issue.",
+        messages: [
+
+    {
+        sender: "customer",
+        name: "Rachel Davis",
+        text:
+            "My pages are taking way longer to load recently.",
+        time: "1:15 PM"
+    },
+
+    {
+        sender: "agent",
+        name: "Lainey Rivers",
+        text:
+            "Hi Rachel! I'm going to check the servers and help you get your pages running faster again!",
+        time: "1:22 PM"
+    }
+
+]
     }
 
 ];
+
+messages: []
 
 /* LOAD SAVED TICKETS */
 
@@ -133,6 +249,50 @@ if (savedTickets) {
 
 }
 
+
+// Make sure every ticket has a messages array
+
+tickets.forEach(ticket => {
+
+    if (!ticket.messages) {
+
+        ticket.messages = [];
+
+    }
+
+});
+
+
+
+
+if (
+    tickets.length > 0 &&
+    tickets[0].messages.length === 0
+) {
+
+    tickets[0].messages = [
+
+        {
+            sender: "customer",
+            name: tickets[0].customer,
+            text:
+                "Hi, I reset my password but I still can't log into my account. Can you help me?",
+            time: "2:42 PM"
+        },
+
+        {
+            sender: "agent",
+            name: tickets[0].agent,
+            text:
+                "Hi! Absolutely. I'm going to check your account and help you get logged back in.",
+            time: "2:47 PM"
+        }
+
+    ];
+
+    saveTickets();
+
+}
 /* SAVE TICKETS */
 
 function saveTickets() {
@@ -169,6 +329,7 @@ const modalClose =
 
 
 /* New ticket modal */
+
 
 const newTicketModal =
     document.getElementById("new-ticket-modal");
@@ -233,6 +394,94 @@ function showToast(message) {
 
 }
 
+const sendReplyButton =
+    document.getElementById(
+        "send-reply"
+    );
+
+
+const replyInput =
+    document.getElementById(
+        "reply-input"
+    );
+
+/* SEND REPLY */
+
+function sendReply() {
+
+    if (!currentTicket) {
+        return;
+    }
+
+
+    const message =
+        replyInput.value.trim();
+
+
+    if (!message) {
+
+        showToast(
+            "Please enter a message."
+        );
+
+        return;
+
+    }
+
+
+    if (!currentTicket.messages) {
+
+        currentTicket.messages = [];
+
+    }
+
+
+    currentTicket.messages.push({
+sender: "agent",
+
+        name: currentTicket.agent,
+
+        text: message,
+
+        time:
+            new Date().toLocaleTimeString(
+                [],
+                {
+                    hour: "numeric",
+                    minute: "2-digit"
+                }
+            )
+
+    });
+
+
+    currentTicket.updated =
+        "Just now";
+
+
+    saveTickets();
+
+
+    renderConversation(
+        currentTicket
+    );
+
+
+    replyInput.value = "";
+
+
+    filterTickets();
+showToast(
+        "Reply sent successfully"
+    );
+
+}
+
+
+sendReplyButton.addEventListener(
+    "click",
+    sendReply
+);
 /* CURRENT TICKET */
 
 let currentTicket = null;
@@ -568,20 +817,120 @@ function openTicket(ticket) {
 
 
     document.getElementById(
-        "edit-notes"
-    ).value =
-        ticket.notes;
+    "edit-notes"
+).value = ticket.notes;
 
 
-    ticketModal.classList.add(
-        "active"
-    );
+renderConversation(ticket);
+
+renderTimeline(ticket);
+
+
+ticketModal.classList.add(
+    "active"
+);
 
 
     ticketModal.setAttribute(
         "aria-hidden",
         "false"
     );
+
+
+}
+
+/* RENDER CONVERSATION */
+
+function renderConversation(ticket) {
+
+    const conversation =
+        document.getElementById(
+            "conversation"
+        );
+
+    const messageCount =
+        document.getElementById(
+            "message-count"
+        );
+
+
+    conversation.innerHTML = "";
+
+
+    const messages =
+        ticket.messages || [];
+
+
+    messageCount.textContent =
+        `${messages.length} ${
+            messages.length === 1
+                ? "message"
+                : "messages"
+        }`;
+
+
+    if (messages.length === 0) {
+
+        conversation.innerHTML = `
+
+            <div class="empty-conversation">
+
+                <p>
+                    No messages yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    messages.forEach(message => {
+
+        const messageElement =
+            document.createElement("div");
+
+
+        messageElement.className =
+            `message ${message.sender}`;
+
+
+        messageElement.innerHTML = `
+
+            <div class="message-meta">
+
+                <strong>
+                    ${message.name}
+                </strong>
+
+                <span>
+                    ${message.time}
+                </span>
+
+            </div>
+
+
+            <div class="message-bubble">
+
+                ${message.text}
+
+            </div>
+
+        `;
+
+
+        conversation.appendChild(
+            messageElement
+        );
+
+    });
+
+
+    conversation.scrollTop =
+        conversation.scrollHeight;
 
 }
 
@@ -887,7 +1236,9 @@ newTicketForm.addEventListener(
 
             description: description,
 
-            notes: ""
+            notes: "",
+
+            messages: []
 
         };
 
@@ -1170,3 +1521,92 @@ window.addEventListener(
 
     }
 );
+
+replyInput.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            event.key === "Enter"
+            &&
+            (
+                event.metaKey
+                ||
+                event.ctrlKey
+            )
+        ) {
+
+            event.preventDefault();
+
+            sendReply();
+
+        }
+
+    }
+);
+
+function renderTimeline(ticket) {
+    
+    const timeline = document.getElementById(
+        "ticket-timeline"
+    );
+
+    if (!timeline) {
+        return;
+    }
+
+    timeline.innerHTML = "";
+
+    const events = [
+
+         {
+            text:
+                `Ticket created and assigned to ${ticket.agent}.`,
+            time:
+                ticket.updated
+        },
+
+        {
+            text:
+                `Priority set to ${capitalize(ticket.priority)}.`,
+            time:
+                "Earlier"
+        },
+
+        {
+            text:
+                `Current status: ${capitalize(ticket.status)}.`,
+            time:
+                "Current"
+        }
+    ];
+
+    events.forEach(event => {
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+
+        item.className =
+            "timeline-item";
+
+
+        item.innerHTML = `
+
+            <strong>
+                ${event.text}
+            </strong>
+
+            <p>
+                ${event.time}
+            </p>
+
+        `;
+
+
+        timeline.appendChild(item);
+
+    });
+}
